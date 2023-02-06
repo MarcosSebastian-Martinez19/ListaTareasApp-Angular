@@ -1,0 +1,25 @@
+<div class="container">
+    <h1>{{title}}</h1>
+    <div cdkDropListGroup>
+        <div class="example-container">
+            <h2>Tareas por completar</h2>
+    
+            <h3 *ngIf="tareasIncompletas.length == 0">Haz realizado todas tus tareas.</h3>
+    
+            <div cdkDropList [cdkDropListData]="tareasIncompletas" class="example-list" cdkDropListSortingDisabled
+                (cdkDropListDropped)="drop($event)" *ngIf="tareasIncompletas.length >= 0">
+                <div class="example-box" *ngFor="let item of tareasIncompletas" cdkDrag>{{item}}</div>
+            </div>
+        </div>
+    
+        <div class="example-container">
+            <h2>Tareas completas</h2>
+            
+            <h3 *ngIf="tareasCompletas.length == 0">Todavía no realizaste ninguna de tus tareas.</h3>
+    
+            <div cdkDropList [cdkDropListData]="tareasCompletas" class="example-list" (cdkDropListDropped)="drop($event)" *ngIf="tareasCompletas.length >= 0">
+                <div class="example-box" *ngFor="let item of tareasCompletas" cdkDrag>{{item}}</div>
+            </div>
+        </div>
+    </div>
+</div>
