@@ -1,0 +1,20 @@
+<mat-accordion class="example-headers-align" multi>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <mat-icon>list</mat-icon>
+                Agregar Tarea
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+    
+        <form [formGroup]="newTarea" (ngSubmit)="agregarTarea()" appearance="fill">
+            <mat-form-field class="ancho">
+                <mat-label>Nombre tarea:</mat-label>
+                <input matInput autocomplete="off" formControlName="nombre">
+            </mat-form-field>
+            <div>
+                <button mat-raised-button type="submit" color="primary" [disabled]="newTarea.invalid">Añadir</button>
+            </div>
+        </form>
+    </mat-expansion-panel>
+</mat-accordion>
