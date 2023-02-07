@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { TareasService } from 'src/app/services/tareas.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-lista-tareas',
@@ -9,9 +11,14 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag
 export class ListaTareasComponent {
   title = "App Lista de Tareas";
 
-  tareasIncompletas = ['Tarea 2', 'Tarea 3', 'Tarea 4', 'Tarea 5', 'Tarea 6',];
+  tareasIncompletas: string[] = [];
 
-  tareasCompletas = ['Tarea 1'];
+  tareasCompletas: string[] = [];
+
+  constructor(private _tareasService: TareasService, private _snackBar: MatSnackBar) {
+    this.tareasIncompletas = this._tareasService.tareasIncompletas;
+    this.tareasCompletas = this._tareasService.tareasCompletas;
+  }
 
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
